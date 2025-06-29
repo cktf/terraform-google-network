@@ -21,46 +21,40 @@ module "network" {
   source = "cktf/network/google"
 
   name = "mynet"
-  cidr = "192.168.0.0/16"
+
   subnets = {
     masters = {
-      type = "server",
-      cidr = "192.168.0.0/24"
+      name   = "masters"
+      cidr   = "192.168.0.0/24"
+      region = "us-central1"
     }
     workers = {
-      type = "server",
-      cidr = "192.168.1.0/24"
+      name   = "workers"
+      cidr   = "192.168.1.0/24"
+      region = "us-east1"
     }
   }
 
   firewalls = {
     manager = {
-      targets = ["cluster/role=manager"]
-      inbounds = {
-        "80:tcp" = {
-          description = "HTTP Inbound Traffic"
-          source_ips  = ["0.0.0.0/0", "::/0"]
+      name      = "manager-firewall"
+      direction = "INGRESS"
+      sources   = ["tag:mytag", "range:192.168.0.0/24", "service_account:my_sa"]
+      targets   = ["tag:mytag", "range:192.168.0.0/24", "service_account:my_sa"]
+      allow = {
+        "http" = {
+          protocol = "tcp"
+          ports    = ["80", "443"]
         }
-        "443:tcp" = {
-          description = "HTTPS Inbound Traffic"
-          source_ips  = ["0.0.0.0/0", "::/0"]
-        }
-        "443:tcp" = {
-          description = "HTTPS Inbound Traffic"
-          source_ips  = ["0.0.0.0/0", "::/0"]
+        "docker" = {
+          protocol = "tcp"
+          ports    = ["2375", "2376"]
         }
       }
-    }
-    worker = {
-      targets = ["cluster/role=worker"]
-      inbounds = {
-        "80:tcp" = {
-          description = "HTTP Inbound Traffic"
-          source_ips  = ["0.0.0.0/0", "::/0"]
-        }
-        "443:tcp" = {
-          description = "HTTPS Inbound Traffic"
-          source_ips  = ["0.0.0.0/0", "::/0"]
+      deny = {
+        "ssh" = {
+          protocol = "tcp"
+          ports    = ["22"]
         }
       }
     }
