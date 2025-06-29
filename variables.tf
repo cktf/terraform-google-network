@@ -1,8 +1,8 @@
-variable "project" {
-  type        = string
+variable "mtu" {
+  type        = number
   default     = null
   sensitive   = false
-  description = "Network Project"
+  description = "Network MTU"
 }
 
 variable "name" {
@@ -10,6 +10,13 @@ variable "name" {
   default     = null
   sensitive   = false
   description = "Network Name"
+}
+
+variable "profile" {
+  type        = string
+  default     = null
+  sensitive   = false
+  description = "Network Profile"
 }
 
 variable "description" {
@@ -21,62 +28,51 @@ variable "description" {
 
 variable "routing_mode" {
   type        = string
-  nullable    = false
+  default     = null
   sensitive   = false
-  description = "Network Routing Model"
-  validation {
-    condition     = contains(["GLOBAL", "REGIONAL"], var.routing_mode)
-    error_message = "Allowed values for routing_mode are 'GLOBAL' or 'REGIONAL'"
-  }
+  description = "Network Routing Mode"
 }
 
-variable "delete_default_routes" {
-  type        = bool
-  default     = false
-  description = "If set to true, default routes (0.0.0.0/0) will be deleted immediately after network creation"
-}
-
-variable "mtu" {
-  type        = number
-  default     = 1460
-  description = "Maximum Transmission Unit in bytes"
-}
-
-variable "labels" {
-  type        = map(string)
-  default     = {}
-  description = "The labels to attach to resources created by this module"
+variable "path_selection_mode" {
+  type        = string
+  default     = null
+  sensitive   = false
+  description = "Network Path Selection Mode"
 }
 
 variable "subnets" {
   type = map(object({
-    cidr                     = string
-    region                   = string
-    private_ip_google_access = optional(bool, true)
-    secondary_ip_ranges = optional(list(object({
-      range_name    = string
-      ip_cidr_range = string
-    })), [])
-    flow_logs          = optional(bool, false)
-    flow_logs_interval = optional(string, "INTERVAL_5_SEC")
-    flow_logs_sampling = optional(number, 0.5)
-    flow_logs_metadata = optional(string, "INCLUDE_ALL_METADATA")
+    name        = string
+    cidr        = string
+    region      = string
+    description = optional(string)
+    reserved    = optional(string)
+    purpose     = optional(string)
+    role        = optional(string)
+
+    secondaries = optional(map(object({
+      name     = string
+      cidr     = string
+      reserved = optional(string)
+    })), {})
   }))
   default     = {}
-  description = "The list of subnets being created"
+  sensitive   = false
+  description = "Network Subnets"
 }
 
 variable "routes" {
   type = map(object({
-    destination       = string
-    priority          = optional(number, 1000)
-    tags              = optional(list(string), [])
-    next_hop_gateway  = optional(string)
-    next_hop_ip       = optional(string)
-    next_hop_instance = optional(string)
+    name        = string
+    tags        = optional(list(string), [])
+    priority    = optional(number)
+    description = optional(string)
+    destination = string
+    next_hop    = string
   }))
   default     = {}
-  description = "List of routes being created in this VPC"
+  sensitive   = false
+  description = "Network Routes"
 }
 
 variable "firewalls" {
