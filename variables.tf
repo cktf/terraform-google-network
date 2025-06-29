@@ -77,23 +77,23 @@ variable "routes" {
 
 variable "firewalls" {
   type = map(object({
-    name                    = optional(string)
-    description             = optional(string)
-    priority                = optional(number, 1000)
-    source_ranges           = optional(list(string))
-    source_tags             = optional(list(string))
-    target_tags             = optional(list(string))
-    source_service_accounts = optional(list(string))
-    target_service_accounts = optional(list(string))
-    allowed_rules = optional(list(object({
+    name        = string
+    priority    = optional(number)
+    disabled    = optional(bool, false)
+    direction   = optional(string)
+    description = optional(string)
+    sources     = optional(list(string), [])
+    targets     = optional(list(string), [])
+
+    allow = optional(map(object({
       protocol = string
       ports    = optional(list(string))
-    })), [])
-    denied_rules = optional(list(object({
+    })), {})
+    deny = optional(map(object({
       protocol = string
       ports    = optional(list(string))
-    })), [])
+    })), {})
   }))
   default     = {}
-  description = "List of firewall rules"
+  description = "Network Firewalls"
 }
