@@ -41,22 +41,8 @@ module "network" {
       direction = "INGRESS"
       sources   = ["tag:mytag", "range:192.168.0.0/24", "service_account:my_sa"]
       targets   = ["tag:mytag", "range:192.168.0.0/24", "service_account:my_sa"]
-      allow = {
-        "http" = {
-          protocol = "tcp"
-          ports    = ["80", "443"]
-        }
-        "docker" = {
-          protocol = "tcp"
-          ports    = ["2375", "2376"]
-        }
-      }
-      deny = {
-        "ssh" = {
-          protocol = "tcp"
-          ports    = ["22"]
-        }
-      }
+      allows    = ["tcp:80,443", "tcp:2375-2376"]
+      denies    = ["tcp:22"]
     }
   }
 }

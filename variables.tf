@@ -84,16 +84,10 @@ variable "firewalls" {
     description = optional(string)
     sources     = optional(list(string), [])
     targets     = optional(list(string), [])
-
-    allow = optional(map(object({
-      protocol = string
-      ports    = optional(list(string))
-    })), {})
-    deny = optional(map(object({
-      protocol = string
-      ports    = optional(list(string))
-    })), {})
+    allows      = optional(list(string), [])
+    denies      = optional(list(string), [])
   }))
   default     = {}
+  sensitive   = false
   description = "Network Firewalls"
 }
