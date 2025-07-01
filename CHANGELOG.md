@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cktf/terraform-google-network/compare/1.0.0...1.1.0) (2025-07-01)
+
+
+### Features
+
+* change firewall allow, deny rules format ([3779bb7](https://github.com/cktf/terraform-google-network/commit/3779bb7f83d72099e4cab5265e2bf2b35b0a4818))
+
 # 1.0.0 (2025-06-29)
 
 
