@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/cktf/terraform-google-network/compare/1.1.0...1.1.1) (2025-07-01)
+
+
+### Bug Fixes
+
+* change bgp default values ([c21efc5](https://github.com/cktf/terraform-google-network/commit/c21efc586f08e521f3ff758f0e6fab3c283898cd))
+
 # [1.1.0](https://github.com/cktf/terraform-google-network/compare/1.0.0...1.1.0) (2025-07-01)
 
 
