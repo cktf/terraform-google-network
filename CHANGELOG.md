@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cktf/terraform-google-network/compare/1.1.1...1.2.0) (2025-07-03)
+
+
+### Features
+
+* split subnets, routes resources ([b67b18c](https://github.com/cktf/terraform-google-network/commit/b67b18c798bbea85aa784a55b5597216698c20b9))
+
 ## [1.1.1](https://github.com/cktf/terraform-google-network/compare/1.1.0...1.1.1) (2025-07-01)
 
 
