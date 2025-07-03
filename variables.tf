@@ -42,7 +42,7 @@ variable "path_selection_mode" {
 
 variable "subnets" {
   type = map(object({
-    name        = string
+    name        = optional(string)
     cidr        = string
     region      = string
     description = optional(string)
@@ -63,7 +63,7 @@ variable "subnets" {
 
 variable "routes" {
   type = map(object({
-    name        = string
+    name        = optional(string)
     tags        = optional(list(string), [])
     priority    = optional(number)
     description = optional(string)
@@ -77,7 +77,7 @@ variable "routes" {
 
 variable "firewalls" {
   type = map(object({
-    name        = string
+    name        = optional(string)
     priority    = optional(number)
     disabled    = optional(bool, false)
     direction   = optional(string)

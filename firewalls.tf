@@ -1,7 +1,7 @@
 resource "google_compute_firewall" "this" {
   for_each = var.firewalls
 
-  name        = each.value.name
+  name        = coalesce(each.value.name, "${var.name}-${each.key}")
   priority    = each.value.priority
   disabled    = each.value.disabled
   direction   = each.value.direction
