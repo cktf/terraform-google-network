@@ -8,7 +8,7 @@ resource "google_compute_subnetwork" "this" {
   reserved_internal_range = each.value.reserved
   purpose                 = each.value.purpose
   role                    = each.value.role
-  network                 = google_compute_network.this.id
+  network                 = google_compute_network.this.self_link
 
   dynamic "secondary_ip_range" {
     for_each = each.value.secondaries
@@ -19,13 +19,8 @@ resource "google_compute_subnetwork" "this" {
     }
   }
 
+  stack_type                       = "IPV4_IPV6"
+  ipv6_access_type                 = "EXTERNAL"
   private_ip_google_access         = true
-  private_ipv6_google_access       = true
   send_secondary_ip_range_if_empty = true
-
-  # TODO: implement IPv6 subnets
-  stack_type           = "IPV4_ONLY"
-  ipv6_access_type     = null
-  external_ipv6_prefix = null
-  ip_collection        = null
 }

@@ -10,7 +10,5 @@ resource "google_compute_network" "this" {
 
   auto_create_subnetworks                   = false
   delete_default_routes_on_create           = true
-  enable_ula_internal_ipv6                  = true
-  internal_ipv6_range                       = null
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
 }
