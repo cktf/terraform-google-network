@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/cktf/terraform-google-network/compare/1.2.0...1.2.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* change id to self_link ([c2f88ed](https://github.com/cktf/terraform-google-network/commit/c2f88edbd3a346c8c22257066566e54aed2410dc))
+
 # [1.2.0](https://github.com/cktf/terraform-google-network/compare/1.1.1...1.2.0) (2025-07-03)
 
 
