@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cktf/terraform-google-network/compare/1.2.1...1.3.0) (2025-07-09)
+
+
+### Features
+
+* add routes, firewalls outputs ([0b6b8c0](https://github.com/cktf/terraform-google-network/commit/0b6b8c0065a0a21c010f50d8dd24438d65775d77))
+
 ## [1.2.1](https://github.com/cktf/terraform-google-network/compare/1.2.0...1.2.1) (2025-07-08)
 
 
