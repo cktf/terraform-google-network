@@ -19,7 +19,7 @@ resource "google_compute_firewall" "this" {
     for_each = { for item in each.value.allows : item => split(":", item) }
     content {
       protocol = allow.value[0]
-      ports    = strcontains(allow.value[1], ",") ? split(",", allow.value[1]) : [allow.value[1]]
+      ports    = try(split(",", allow.value[1]), null)
     }
   }
 
@@ -27,7 +27,7 @@ resource "google_compute_firewall" "this" {
     for_each = { for item in each.value.denies : item => split(":", item) }
     content {
       protocol = deny.value[0]
-      ports    = strcontains(deny.value[1], ",") ? split(",", deny.value[1]) : [deny.value[1]]
+      ports    = try(split(",", deny.value[1]), null)
     }
   }
 }

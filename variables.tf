@@ -40,6 +40,20 @@ variable "path_selection_mode" {
   description = "Network Path Selection Mode"
 }
 
+variable "routes" {
+  type = map(object({
+    name        = optional(string)
+    tags        = optional(list(string), [])
+    priority    = optional(number)
+    description = optional(string)
+    destination = string
+    next_hop    = string
+  }))
+  default     = {}
+  sensitive   = false
+  description = "Network Routes"
+}
+
 variable "subnets" {
   type = map(object({
     name        = optional(string)
@@ -59,20 +73,6 @@ variable "subnets" {
   default     = {}
   sensitive   = false
   description = "Network Subnets"
-}
-
-variable "routes" {
-  type = map(object({
-    name        = optional(string)
-    tags        = optional(list(string), [])
-    priority    = optional(number)
-    description = optional(string)
-    destination = string
-    next_hop    = string
-  }))
-  default     = {}
-  sensitive   = false
-  description = "Network Routes"
 }
 
 variable "firewalls" {
