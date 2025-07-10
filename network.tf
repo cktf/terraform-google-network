@@ -9,6 +9,6 @@ resource "google_compute_network" "this" {
   bgp_inter_region_cost        = var.path_selection_mode == "STANDARD" ? "ADD_COST_TO_MED" : null
 
   auto_create_subnetworks                   = false
-  delete_default_routes_on_create           = true
+  delete_default_routes_on_create           = false
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
 }
