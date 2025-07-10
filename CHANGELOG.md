@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/cktf/terraform-google-network/compare/1.3.0...1.4.0) (2025-07-10)
+
+
+### Features
+
+* enable network default routes ([b46dacb](https://github.com/cktf/terraform-google-network/commit/b46dacb7ea8cdee82a32035570e2d52003c348e2))
+
 # [1.3.0](https://github.com/cktf/terraform-google-network/compare/1.2.1...1.3.0) (2025-07-09)
 
 
